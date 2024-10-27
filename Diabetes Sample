@@ -1,0 +1,80 @@
+> summary(pima)
+     npreg             glu               bp              skin            bmi       
+ Min.   : 0.000   Min.   : 56.00   Min.   : 24.00   Min.   : 7.00   Min.   :18.20  
+ 1st Qu.: 1.000   1st Qu.: 98.75   1st Qu.: 64.00   1st Qu.:22.00   1st Qu.:27.88  
+ Median : 2.000   Median :115.00   Median : 72.00   Median :29.00   Median :32.80  
+ Mean   : 3.517   Mean   :121.03   Mean   : 71.51   Mean   :29.18   Mean   :32.89  
+ 3rd Qu.: 5.000   3rd Qu.:141.25   3rd Qu.: 80.00   3rd Qu.:36.00   3rd Qu.:36.90  
+ Max.   :17.000   Max.   :199.00   Max.   :110.00   Max.   :99.00   Max.   :67.10  
+      ped              age         type    
+ Min.   :0.0850   Min.   :21.00   No :355  
+ 1st Qu.:0.2587   1st Qu.:23.00   Yes:177  
+ Median :0.4160   Median :28.00            
+ Mean   :0.5030   Mean   :31.61            
+ 3rd Qu.:0.6585   3rd Qu.:38.00            
+ Max.   :2.4200   Max.   :81.00            
+> 
+> hist(pima$glu, main = "Glucose Level Distribution")
+> setwd("/Users/sara/Desktop/")
+> 
+> boxplot(pima$glu ~ pima$type, main = "Glucose levels in Diabetic and Non-Diabetic People")
+> 
+> 
+> #H1: People with Diabetes have a higher rate of glucose in comparison to those without 
+> 
+> #H2: People who have higher bmi levels are more likely to have diabetes than people who arent 
+> 
+> #H3: Older people are more likely to have diabetes?? 
+> 
+> t.test(pima$glu ~ pima$type)
+
+	Welch Two Sample t-test
+
+data:  pima$glu by pima$type
+t = -12.35, df = 285.01, p-value < 2.2e-16
+alternative hypothesis: true difference in means between group No and group Yes is not equal to 0
+95 percent confidence interval:
+ -38.37750 -27.82599
+sample estimates:
+ mean in group No mean in group Yes 
+         110.0169          143.1186 
+
+> #H1 is accepted YAYYYYYY 
+> 
+> hist(pima$type ~ pima$bmi, main = "Trying to figure out how bmi affects diabetes :)")
+Error in hist.default(pima$type ~ pima$bmi, main = "Trying to figure out how bmi affects diabetes :)") : 
+  'x' must be numeric
+> boxplot(pima$bmi ~ pima$type, main = "Trying to figure out if bmi affects diabetes")
+> 
+> t.test(pima$bmi ~ pima$type)
+
+	Welch Two Sample t-test
+
+data:  pima$bmi by pima$type
+t = -7.24, df = 348.71, p-value = 2.887e-12
+alternative hypothesis: true difference in means between group No and group Yes is not equal to 0
+95 percent confidence interval:
+ -5.582824 -3.197569
+sample estimates:
+ mean in group No mean in group Yes 
+         31.42958          35.81977 
+
+> #H2 is accepted yayyyy 
+> 
+> boxplot(pima$age ~ pima$type, main = "Age vs Diabetes")
+> 
+> t.test(pima$age ~ pima$type)
+
+	Welch Two Sample t-test
+
+data:  pima$age by pima$type
+t = -7.4165, df = 325.05, p-value = 1.055e-12
+alternative hypothesis: true difference in means between group No and group Yes is not equal to 0
+95 percent confidence interval:
+ -9.097073 -5.282715
+sample estimates:
+ mean in group No mean in group Yes 
+         29.22254          36.41243 
+
+> 
+> #Yayyyyyyyy hypothesis 3 is also accepted :))) 
